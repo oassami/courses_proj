@@ -6,12 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+    <!-- Bootstrap TAGS from (getbootstrap.com/docs) -->
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap TAGS -->
+
 </head>
 
 <body>
-    <div id="wrapper">
+    <div class="container">
         <h2>Add a new course</h2>
         {% if messages %}
             <ul>
@@ -22,29 +31,38 @@
         {% endif %}
         <form action="/courses/new" method="POST">
             {% csrf_token %}
-            <p>Name: </p>
-            <input type="text" name="c_name" value="{{request.session.name}}">
-            <p>Description: </p>
-            <textarea id="desc" name="c_desc">{{request.session.description}}</textarea><br>
-            <input type="submit" value="Add"><br>
-            <a href="/reset">Reset form</a>
+            <div class="mb-3">
+                <label class="form-label">Name:</label>
+                <input type="text" name="c_name" value="{{request.session.name}}" class="form-control" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description:</label>
+                <textarea name="c_desc" class="form-control" rows="3">{{request.session.description}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a href="/reset" class="card-link">Reset form</a>
         </form>
+        <br>
         <h2>Courses</h2>
-        <table>
-            <tr>
-                <th>Course Name</th>
-                <th>Description</th>
-                <th>Date Added</th>
-                <th>Action</th>
-            </tr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="table-dark">Course Name</th>
+                    <th class="table-dark">Description</th>
+                    <th class="table-dark">Date Added</th>
+                    <th class="table-dark">Action</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for course in courses %}
-            <tr>
-                <td>{{course.name}}</td>
-                <td>{{course.description}}</td>
-                <td>{{course.created_at}}</td>
-                <td><a href="/courses/{{course.id}}/confirm">remove</a></td>
-            </tr>
+                <tr>
+                    <td>{{course.name}}</td>
+                    <td>{{course.description}}</td>
+                    <td>{{course.created_at}}</td>
+                    <td><a type="button" class="btn btn-danger" href="/courses/{{course.id}}/confirm">Delete</a></td>
+                </tr>
             {% endfor %}
+            </tbody>
         </table>
     </div>
 </body>

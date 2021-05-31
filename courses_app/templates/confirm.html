@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Bootstrap TAGS from (getbootstrap.com/docs) -->
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap TAGS -->
+    <!-- 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}"> -->
 </head>
+
 <body>
-    <div id="wrapper">
-        <h2>Are you sure you want to delete the following course?</h2>
-        <!-- <form action="/courses/new" method="POST"> -->
-            <!-- {% csrf_token %} -->
-            <p>Name: {{course.name}}</p>
-            <!-- <input type="text" name="c_name" value="{{name}}"> -->
-            <p>Description: {{course.description}}</p>
-            <!-- <textarea id="desc" name="c_desc">{{description}}</textarea><br> -->
-            <!-- <input type="submit" value="Add"> -->
-        <!-- </form> -->
-        <a type="button" href="/"><button>NO</button></a>
-        <a type="button" href="/courses/{{course.id}}/destroy"><button>YES! I want to delete this</button></a>
+    <div class="container ">
+        <p class="text-center text-uppercase fw-bold mt-5">Are you sure you want to delete the following course?</p>
+        <p><span class="fw-bold">Name: </span>{{course.name}}</p>
+        <p><span class="fw-bold">Description: </span>{{course.description}}</p>
+        <a type="button" class="btn btn-primary me-5" href="/">NO...</a>
+        <a type="button" class="btn btn-danger ms-5" href="/courses/{{course.id}}/destroy">YES!</a>
     </div>
 </body>
+
 </html>
